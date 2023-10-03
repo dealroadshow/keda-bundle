@@ -8,7 +8,7 @@ use Dealroadshow\K8S\Data\HorizontalPodAutoscalerBehavior;
 
 class HPAConfig implements \JsonSerializable
 {
-    private string $name;
+    private string|null $name = null;
     private HorizontalPodAutoscalerBehavior $behavior;
 
     public function __construct()
@@ -21,7 +21,7 @@ class HPAConfig implements \JsonSerializable
         return $this->behavior;
     }
 
-    public function getName(): string
+    public function getName(): string|null
     {
         return $this->name;
     }
