@@ -6,12 +6,10 @@ namespace Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject;
 
 use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\Fallback;
 use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\ScaledObject;
-use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\ScaleTargetReference;
-use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\ScaleTarget\WorkloadContainerReference;
 use Dealroadshow\K8S\Framework\Core\AbstractManifest;
 use Dealroadshow\K8S\Framework\Core\Autoscaling\Configurator\BehaviorConfigurator;
 
-class AbstractScaledObject extends AbstractManifest implements ScaledObjectInterface
+abstract class AbstractScaledObject extends AbstractManifest implements ScaledObjectInterface
 {
     public static function apiVersion(): string
     {
