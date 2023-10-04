@@ -1,6 +1,7 @@
 services:
   _defaults:
     autowire: true
+    autoconfigure: true
 
   Dealroadshow\Bundle\KedaBundle\ResourceMaker\ScaledObjectMaker: ~
   Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\Trigger\RabbitMQ\RabbitMQTrigger: ~

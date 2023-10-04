@@ -9,6 +9,7 @@ use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\ScaleTargetReference;
 use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\Trigger;
 use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\ScaledObjectInterface;
 use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\ScaleTarget\WorkloadContainerReference;
+use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\Trigger\TriggerBuildersRegistry;
 use Dealroadshow\K8S\Framework\App\AppInterface;
 use Dealroadshow\K8S\Framework\Core\Autoscaling\Configurator\BehaviorConfigurator;
 use Dealroadshow\K8S\Framework\Core\ManifestInterface;
@@ -18,8 +19,10 @@ use Dealroadshow\K8S\Framework\Util\VersionedManifestReferencesService;
 
 class ScaledObjectMaker extends AbstractResourceMaker
 {
-    public function __construct(private readonly VersionedManifestReferencesService $referencesService)
-    {
+    public function __construct(
+        private readonly VersionedManifestReferencesService $referencesService,
+        private readonly TriggerBuildersRegistry $buildersRegistry
+    ) {
     }
 
     protected function supportsClass(): string
@@ -58,7 +61,7 @@ class ScaledObjectMaker extends AbstractResourceMaker
         $manifest->behavior($behaviorConfigurator);
 
         $triggers = [];
-        foreach ($manifest->triggers() as $trigger) {
+        foreach ($manifest->triggers($this->buildersRegistry) as $trigger) {
             if (!$trigger instanceof Trigger) {
                 throw new \TypeError(
                     sprintf(
