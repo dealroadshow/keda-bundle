@@ -4,14 +4,19 @@ declare(strict_types=1);
 
 namespace Dealroadshow\Bundle\KedaBundle\API\ScaledObject;
 
-class ScaleTrigger implements \JsonSerializable
+use Dealroadshow\K8S\Data\Collection\StringMap;
+use Dealroadshow\K8S\Framework\Core\Autoscaling\Metric\TargetType;
+use Dealroadshow\K8S\Framework\Util\StringMapProxy;
+
+class Trigger implements \JsonSerializable
 {
     public AuthenticationReference|null $authenticationRef = null;
-    public readonly \ArrayObject $metadata;
+    public readonly StringMap $metadata;
+    public TargetType|null $metricType = null;
 
     public function __construct(public readonly string $type)
     {
-        $this->metadata = new \ArrayObject();
+        $this->metadata = StringMapProxy::make(new StringMap());
     }
 
 
@@ -19,6 +24,7 @@ class ScaleTrigger implements \JsonSerializable
     {
         return [
             'type' => $this->type,
+            'metricType' => $this->metricType,
             'authenticationRef' => $this->authenticationRef,
             'metadata' => $this->metadata,
         ];

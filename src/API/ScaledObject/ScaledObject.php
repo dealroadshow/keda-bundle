@@ -23,7 +23,7 @@ class ScaledObject implements APIResourceInterface
     private AdvancedSettings $advanced;
 
     /**
-     * @var ScaleTrigger[]
+     * @var Trigger[]
      */
     private array $triggers = [];
 

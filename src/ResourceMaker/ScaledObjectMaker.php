@@ -6,7 +6,7 @@ namespace Dealroadshow\Bundle\KedaBundle\ResourceMaker;
 
 use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\ScaledObject;
 use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\ScaleTargetReference;
-use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\ScaleTrigger;
+use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\Trigger;
 use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\ScaledObjectInterface;
 use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\ScaleTarget\WorkloadContainerReference;
 use Dealroadshow\K8S\Framework\App\AppInterface;
@@ -59,12 +59,12 @@ class ScaledObjectMaker extends AbstractResourceMaker
 
         $triggers = [];
         foreach ($manifest->triggers() as $trigger) {
-            if (!$trigger instanceof ScaleTrigger) {
+            if (!$trigger instanceof Trigger) {
                 throw new \TypeError(
                     sprintf(
                         'Each element of %s::triggers() must be an instance of %s, %s given',
                         ClassName::real($manifest),
-                        ScaleTrigger::class,
+                        Trigger::class,
                         is_object($trigger) ? $trigger::class : gettype($trigger)
                     )
                 );

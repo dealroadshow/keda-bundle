@@ -7,8 +7,9 @@ namespace Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject;
 use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\Fallback;
 use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\ScaledObject;
 use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\ScaleTargetReference;
-use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\ScaleTrigger;
+use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\Trigger;
 use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\ScaleTarget\WorkloadContainerReference;
+use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\Trigger\TriggerBuildersRegistry;
 use Dealroadshow\K8S\Framework\Core\Autoscaling\Configurator\BehaviorConfigurator;
 use Dealroadshow\K8S\Framework\Core\ManifestInterface;
 
@@ -26,8 +27,8 @@ interface ScaledObjectInterface extends ManifestInterface
     public function behavior(BehaviorConfigurator $behavior): void;
 
     /**
-     * @return ScaleTrigger[]
+     * @return Trigger[]
      */
-    public function triggers(): iterable;
+    public function triggers(TriggerBuildersRegistry $builders): iterable;
     public function configureScaledObject(ScaledObject $scaledObject): void;
 }

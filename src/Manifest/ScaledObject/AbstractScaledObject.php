@@ -6,6 +6,7 @@ namespace Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject;
 
 use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\Fallback;
 use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\ScaledObject;
+use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\Trigger\TriggerBuildersRegistry;
 use Dealroadshow\K8S\Framework\Core\AbstractManifest;
 use Dealroadshow\K8S\Framework\Core\Autoscaling\Configurator\BehaviorConfigurator;
 
@@ -65,7 +66,7 @@ abstract class AbstractScaledObject extends AbstractManifest implements ScaledOb
     {
     }
 
-    public function triggers(): iterable
+    public function triggers(TriggerBuildersRegistry $builders): iterable
     {
         return [];
     }

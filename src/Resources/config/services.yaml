@@ -1,6 +1,9 @@
 services:
   _defaults:
     autowire: true
-    autoconfigure: true
 
   Dealroadshow\Bundle\KedaBundle\ResourceMaker\ScaledObjectMaker: ~
+  Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\Trigger\RabbitMQ\RabbitMQTrigger: ~
+  Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\Trigger\TriggerBuildersRegistry:
+    arguments:
+      $builders: !tagged_iterator dealroadshow_keda.trigger_builder
