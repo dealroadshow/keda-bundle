@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Dealroadshow\Bundle\KedaBundle\Manifest;
 
-use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\ScaledObject;
+use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\ScaledObjectInterface;
 
 interface ScalableWorkloadInterface
 {
-    public function scaledObject(): ScaledObject;
+    public function scaledObject(): ScaledObjectInterface;
 }
