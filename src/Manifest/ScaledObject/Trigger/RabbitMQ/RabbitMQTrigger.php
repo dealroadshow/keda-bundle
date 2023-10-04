@@ -6,6 +6,7 @@ namespace Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\Trigger\RabbitMQ;
 
 use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\Trigger;
 use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\Trigger\TriggerBuilderInterface;
+use Dealroadshow\K8S\Framework\Core\Autoscaling\Metric\TargetType;
 
 class RabbitMQTrigger implements TriggerBuilderInterface
 {
@@ -59,6 +60,12 @@ class RabbitMQTrigger implements TriggerBuilderInterface
         return $this;
     }
 
+    public function metricType(TargetType $type): static
+    {
+        $this->trigger->metricType = $type;
+
+        return $this;
+    }
 
     public function build(): Trigger
     {

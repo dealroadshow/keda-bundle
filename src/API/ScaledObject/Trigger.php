@@ -24,7 +24,7 @@ class Trigger implements \JsonSerializable
     {
         return [
             'type' => $this->type,
-            'metricType' => $this->metricType,
+            'metricType' => $this->metricType?->value,
             'authenticationRef' => $this->authenticationRef,
             'metadata' => $this->metadata,
         ];
