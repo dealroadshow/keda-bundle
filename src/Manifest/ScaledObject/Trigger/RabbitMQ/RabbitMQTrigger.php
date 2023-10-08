@@ -4,111 +4,70 @@ declare(strict_types=1);
 
 namespace Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\Trigger\RabbitMQ;
 
-use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\Trigger;
-use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\Trigger\TriggerBuilderInterface;
-use Dealroadshow\K8S\Framework\Core\Autoscaling\Metric\TargetType;
+use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\Trigger\AbstractTriggerBuilder;
+use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\Trigger\OneOf;
 
-class RabbitMQTrigger implements TriggerBuilderInterface
+class RabbitMQTrigger extends AbstractTriggerBuilder
 {
-    private const TRIGGER_TYPE = 'rabbitmq';
-    private const METADATA_KEY_HOST = 'host';
-    private const METADATA_KEY_HOST_FROM_ENV = 'hostFromEnv';
-    private const METADATA_KEY_QUEUE_NAME = 'queueName';
-    private const METADATA_KEY_MODE = 'mode';
-    private const METADATA_KEY_VALUE = 'value';
-    private const METADATA_KEY_ACTIVATION_VALUE = 'activationValue';
-    private Trigger $trigger;
+    private const HOST = 'host';
+    private const HOST_FROM_ENV = 'hostFromEnv';
+    private const QUEUE_NAME = 'queueName';
+    private const MODE = 'mode';
+    private const VALUE = 'value';
+    private const ACTIVATION_VALUE = 'activationValue';
 
-    private function __construct(string $queueName)
+    public function queue(string $queueName): static
     {
-        $this->trigger = new Trigger(self::TRIGGER_TYPE);
-        $this->trigger->metadata->add(self::METADATA_KEY_QUEUE_NAME, $queueName);
+        $this->trigger->metadata->add(self::QUEUE_NAME, $queueName);
+
+        return $this;
     }
 
     public function host(string $host): static
     {
-        $this->trigger->metadata->add(self::METADATA_KEY_HOST, $host);
-
-        return $this;
+        return $this->set(self::HOST, $host);
     }
 
     public function hostFromEnv(string $envName): static
     {
-        $this->trigger->metadata->add(self::METADATA_KEY_HOST_FROM_ENV, $envName);
-
-        return $this;
+        return $this->set(self::HOST_FROM_ENV, $envName);
     }
 
     public function mode(Mode $mode): static
     {
-        $this->trigger->metadata->add(self::METADATA_KEY_MODE, $mode->value);
-
-        return $this;
+        return $this->set(self::MODE, $mode->value);
     }
 
     public function value(int|float $value): static
     {
-        $this->trigger->metadata->add(self::METADATA_KEY_VALUE, $value);
-
-        return $this;
+        return $this->set(self::VALUE, $value);
     }
 
     public function activationValue(int|float $value): static
     {
-        $this->trigger->metadata->add(self::METADATA_KEY_ACTIVATION_VALUE, $value);
-
-        return $this;
-    }
-
-    public function metricType(TargetType $type): static
-    {
-        $this->trigger->metricType = $type;
-
-        return $this;
-    }
-
-    public function build(): Trigger
-    {
-        $this->ensureHostIsSet();
-        $this->ensureMetadataKeyIsSet(self::METADATA_KEY_VALUE);
-        $this->ensureMetadataKeyIsSet(self::METADATA_KEY_MODE);
-
-        return $this->trigger;
+        return $this->set(self::ACTIVATION_VALUE, $value);
     }
 
     public static function forQueue(string $queueName): static
     {
-        return new static($queueName);
+        $instance = new static();
+        $instance->queue($queueName);
+
+        return $instance;
     }
 
-    private function ensureHostIsSet(): void
+    protected static function type(): string
     {
-        $meta = $this->trigger->metadata;
-        if (!$meta->has(self::METADATA_KEY_HOST) && !$meta->has(self::METADATA_KEY_HOST_FROM_ENV)) {
-            throw new \LogicException(
-                sprintf(
-                    'You must provide either "%s" or "%s", but none provided',
-                    self::METADATA_KEY_HOST,
-                    self::METADATA_KEY_HOST_FROM_ENV
-                )
-            );
-        }
-
-        if ($meta->has(self::METADATA_KEY_HOST) && $meta->has(self::METADATA_KEY_HOST_FROM_ENV)) {
-            throw new \LogicException(
-                sprintf(
-                    'You must provide either "%s" or "%s", but both provided',
-                    self::METADATA_KEY_HOST,
-                    self::METADATA_KEY_HOST_FROM_ENV
-                )
-            );
-        }
+        return 'rabbitmq';
     }
 
-    private function ensureMetadataKeyIsSet(string $key): void
+    protected function requiredKeys(): array
     {
-        if (!$this->trigger->metadata->has($key)) {
-            throw new \LogicException(sprintf('You must provide "%s"', $key));
-        }
+        return [
+            self::VALUE,
+            self::MODE,
+            self::QUEUE_NAME,
+            new OneOf(self::HOST, self::HOST_FROM_ENV),
+        ];
     }
 }
