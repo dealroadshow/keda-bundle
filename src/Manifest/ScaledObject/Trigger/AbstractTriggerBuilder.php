@@ -19,7 +19,7 @@ abstract class AbstractTriggerBuilder implements TriggerBuilderInterface
 
     public function __construct()
     {
-        $this->trigger = new Trigger(self::type());
+        $this->trigger = new Trigger(static::type());
     }
 
     public function build(): Trigger
