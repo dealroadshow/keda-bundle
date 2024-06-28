@@ -16,4 +16,9 @@ final readonly class OneOf
 
         $this->metadataKeys = $metadataKeys;
     }
+
+    public static function fromValues(string ...$values): self
+    {
+        return new self(...$values);
+    }
 }

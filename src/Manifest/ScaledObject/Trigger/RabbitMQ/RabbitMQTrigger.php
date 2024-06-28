@@ -18,9 +18,7 @@ class RabbitMQTrigger extends AbstractTriggerBuilder
 
     public function queue(string $queueName): static
     {
-        $this->trigger->metadata->add(self::QUEUE_NAME, $queueName);
-
-        return $this;
+        return $this->set(self::QUEUE_NAME, $queueName);
     }
 
     public function host(string $host): static
