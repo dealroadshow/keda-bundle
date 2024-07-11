@@ -30,12 +30,12 @@ class PostgreSQLTrigger extends AbstractTriggerBuilder
         return $this->set(self::QUERY, $query);
     }
 
-    public function targetQueryValue(string $value): static
+    public function targetQueryValue(int|float $value): static
     {
         return $this->set(self::TARGET_QUERY_VALUE, $value);
     }
 
-    public function activationTargetQueryValue(string $value): static
+    public function activationTargetQueryValue(int|float $value): static
     {
         return $this->set(self::ACTIVATION_TARGET_QUERY_VALUE, $value);
     }

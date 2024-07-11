@@ -41,12 +41,12 @@ class MySQLTrigger extends AbstractTriggerBuilder
         return $this->set(self::QUERY, $query);
     }
 
-    public function queryValue(string $value): static
+    public function queryValue(int|float $value): static
     {
         return $this->set(self::QUERY_VALUE, $value);
     }
 
-    public function activationQueryValue(string $value): static
+    public function activationQueryValue(int|float $value): static
     {
         return $this->set(self::ACTIVATION_QUERY_VALUE, $value);
     }
