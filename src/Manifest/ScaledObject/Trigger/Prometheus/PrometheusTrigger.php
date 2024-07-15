@@ -24,9 +24,9 @@ class PrometheusTrigger extends AbstractTriggerBuilder
 
     private function __construct(string $query)
     {
-        $this->set(self::QUERY, $query);
-
         parent::__construct();
+
+        $this->set(self::QUERY, $query);
     }
 
     public function serverAddress(string $serverAddress): static
