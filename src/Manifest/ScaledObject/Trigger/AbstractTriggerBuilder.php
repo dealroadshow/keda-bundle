@@ -44,6 +44,13 @@ abstract class AbstractTriggerBuilder implements TriggerBuilderInterface
         return $this;
     }
 
+    public function useCachedMetrics(bool $value): static
+    {
+        $this->trigger->useCachedMetrics = $value;
+
+        return $this;
+    }
+
     protected function set(string $key, mixed $value): static
     {
         $this->trigger->metadata->add($key, $value);
