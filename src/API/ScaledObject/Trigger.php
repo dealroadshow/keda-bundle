@@ -13,6 +13,7 @@ class Trigger implements \JsonSerializable
     public AuthenticationReference|null $authenticationRef = null;
     public readonly StringMap $metadata;
     public TargetType|null $metricType = null;
+    public bool $useCachedMetrics = false;
 
     public function __construct(public readonly string $type)
     {
