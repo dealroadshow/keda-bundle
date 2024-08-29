@@ -4,7 +4,7 @@
     "type": "symfony-bundle",
     "require": {
         "php": ">=8.2",
-        "dealroadshow/k8s-resources": "*",
+        "dealroadshow/k8s-resources": "dev-v1.30-new",
         "dealroadshow/k8s-framework": "*",
         "dealroadshow/k8s-bundle": "*",
         "symfony/dependency-injection": ">=7.1",

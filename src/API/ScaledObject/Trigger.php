@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dealroadshow\Bundle\KedaBundle\API\ScaledObject;
 
-use Dealroadshow\K8S\Data\Collection\StringMap;
+use Dealroadshow\K8S\Collection\StringMap;
 use Dealroadshow\K8S\Framework\Core\Autoscaling\Metric\TargetType;
 use Dealroadshow\K8S\Framework\Util\StringMapProxy;
 
