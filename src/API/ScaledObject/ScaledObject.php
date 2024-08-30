@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Dealroadshow\Bundle\KedaBundle\API\ScaledObject;
 
+use Dealroadshow\K8S\Apimachinery\Pkg\Apis\Meta\V1\ObjectMeta;
 use Dealroadshow\K8S\APIResourceInterface;
-use Dealroadshow\K8S\Data\ObjectMeta;
 
 class ScaledObject implements APIResourceInterface
 {
