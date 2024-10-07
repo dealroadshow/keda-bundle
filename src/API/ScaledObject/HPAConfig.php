@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dealroadshow\Bundle\KedaBundle\API\ScaledObject;
 
-use Dealroadshow\K8S\Data\HorizontalPodAutoscalerBehavior;
+use Dealroadshow\K8S\Api\Autoscaling\V2\HorizontalPodAutoscalerBehavior;
 
 class HPAConfig implements \JsonSerializable
 {

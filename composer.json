@@ -4,13 +4,13 @@
     "type": "symfony-bundle",
     "require": {
         "php": ">=8.2",
-        "dealroadshow/k8s-resources": "^1.23 || ^1.24 || ^1.25 || ^1.26 || ^1.27 || ^1.28",
-        "dealroadshow/k8s-framework": "dev-main",
-        "dealroadshow/k8s-bundle": "dev-main",
-        "symfony/dependency-injection": ">=6.3",
-        "symfony/http-kernel": ">=6.3",
-        "symfony/console": ">=6.3",
-        "symfony/config": ">=6.3"
+        "dealroadshow/k8s-resources": "*",
+        "dealroadshow/k8s-framework": "*",
+        "dealroadshow/k8s-bundle": "*",
+        "symfony/dependency-injection": ">=7.1",
+        "symfony/http-kernel": ">=7.1",
+        "symfony/console": ">=7.1",
+        "symfony/config": ">=7.1"
     },
     "license": "MIT",
     "autoload": {
