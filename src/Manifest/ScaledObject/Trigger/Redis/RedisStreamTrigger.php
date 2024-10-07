@@ -127,7 +127,6 @@ class RedisStreamTrigger extends AbstractTriggerBuilder
         return [
             new OneOf(self::ADDRESS, self::ADDRESS_FROM_ENV),
             new OneOf(self::PENDING_ENTRIES_COUNT, self::STREAM_LENGTH, self::LAG_COUNT),
-            self::USERNAME_FROM_ENV,
             self::PASSWORD_FROM_ENV,
             self::STREAM,
         ];
