@@ -52,9 +52,9 @@ abstract class AbstractScaledObject extends AbstractManifest implements ScaledOb
         return null;
     }
 
-    public function restoreToOriginalReplicaCount(): bool
+    public function restoreToOriginalReplicaCount(): bool|null
     {
-        return false;
+        return null;
     }
 
     public function hpaName(): string|null

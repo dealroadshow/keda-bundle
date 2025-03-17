@@ -22,7 +22,7 @@ interface ScaledObjectInterface extends ManifestInterface
     public function minReplicaCount(): int;
     public function maxReplicaCount(): int;
     public function fallback(): Fallback|null;
-    public function restoreToOriginalReplicaCount(): bool;
+    public function restoreToOriginalReplicaCount(): bool|null;
     public function hpaName(): string|null;
     public function behavior(BehaviorConfigurator $behavior): void;
 
