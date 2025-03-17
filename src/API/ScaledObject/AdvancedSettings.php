@@ -6,7 +6,7 @@ namespace Dealroadshow\Bundle\KedaBundle\API\ScaledObject;
 
 final class AdvancedSettings implements \JsonSerializable
 {
-    private bool $restoreToOriginalReplicaCount = false;
+    private bool|null $restoreToOriginalReplicaCount = null;
     private HPAConfig $horizontalPodAutoscalerConfig;
 
     public function __construct()
@@ -14,7 +14,7 @@ final class AdvancedSettings implements \JsonSerializable
         $this->horizontalPodAutoscalerConfig = new HPAConfig();
     }
 
-    public function getRestoreToOriginalReplicaCount(): bool
+    public function getRestoreToOriginalReplicaCount(): bool|null
     {
         return $this->restoreToOriginalReplicaCount;
     }

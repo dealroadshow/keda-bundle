@@ -52,7 +52,9 @@ class ScaledObjectMaker extends AbstractResourceMaker
         }
 
         $advanced = $scaledObject->advanced();
-        $advanced->setRestoreToOriginalReplicaCount($manifest->restoreToOriginalReplicaCount());
+        if (($restoreToOriginalReplicaCount = $manifest->restoreToOriginalReplicaCount()) !== null) {
+            $advanced->setRestoreToOriginalReplicaCount($restoreToOriginalReplicaCount);
+        }
         $hpaConfig = $advanced->horizontalPodAutoscalerConfig();
         if ($hpaName = $manifest->hpaName()) {
             $hpaConfig->setName($hpaName);
