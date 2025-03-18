@@ -4,9 +4,9 @@
     "type": "symfony-bundle",
     "require": {
         "php": ">=8.2",
-        "dealroadshow/k8s-resources": "*",
-        "dealroadshow/k8s-framework": "*",
-        "dealroadshow/k8s-bundle": "*",
+        "dealroadshow/k8s-resources": ">=1.30",
+        "dealroadshow/k8s-framework": "v0.13.1",
+        "dealroadshow/k8s-bundle": "v0.10.3",
         "symfony/dependency-injection": ">=7.1",
         "symfony/http-kernel": ">=7.1",
         "symfony/console": ">=7.1",
