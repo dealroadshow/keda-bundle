@@ -7,6 +7,7 @@ namespace Dealroadshow\Bundle\KedaBundle\ResourceMaker;
 use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\ScaledObject;
 use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\ScaleTargetReference;
 use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\Trigger;
+use Dealroadshow\Bundle\KedaBundle\Event\ScaledObjectGeneratedEvent;
 use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\ScaledObjectInterface;
 use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\ScaleTarget\WorkloadContainerReference;
 use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\Trigger\TriggerBuildersRegistry;
@@ -81,6 +82,8 @@ class ScaledObjectMaker extends AbstractResourceMaker
         $scaledObject->setTriggers($triggers);
 
         $manifest->configureScaledObject($scaledObject);
+
+        $this->dispatcher->dispatch(new ScaledObjectGeneratedEvent($manifest, $scaledObject, $app), ScaledObjectGeneratedEvent::NAME);
 
         return $scaledObject;
     }
