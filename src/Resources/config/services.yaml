@@ -4,6 +4,7 @@ services:
     autoconfigure: true
 
   Dealroadshow\Bundle\KedaBundle\ResourceMaker\ScaledObjectMaker: ~
+  Dealroadshow\Bundle\KedaBundle\ResourceMaker\ScaledJobMaker: ~
   Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\Trigger\RabbitMQ\RabbitMQTrigger: ~
   Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\Trigger\Redis\RedisTrigger: ~
   Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\Trigger\TriggerBuildersRegistry:

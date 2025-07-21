@@ -138,7 +138,7 @@ class ScaledObject implements APIResourceInterface
     {
         return [
             'apiVersion' => self::API_VERSION,
-            'kind' => 'ScaledObject',
+            'kind' => self::KIND,
             'metadata' => $this->meta,
             'spec' => [
                 'scaleTargetRef' => $this->scaleTargetRef,

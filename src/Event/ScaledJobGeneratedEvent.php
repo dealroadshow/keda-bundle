@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Dealroadshow\Bundle\KedaBundle\Event;
 
-use Dealroadshow\Bundle\KedaBundle\API\ScaledObject\ScaledObject;
-use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledObject\ScaledObjectInterface;
+use Dealroadshow\Bundle\KedaBundle\API\ScaledJob\ScaledJob;
+use Dealroadshow\Bundle\KedaBundle\Manifest\ScaledJob\ScaledJobInterface;
 use Dealroadshow\K8S\APIResourceInterface;
 use Dealroadshow\K8S\Framework\App\AppInterface;
 use Dealroadshow\K8S\Framework\Core\ManifestInterface;
 use Dealroadshow\K8S\Framework\Event\ManifestGeneratedEventInterface;
 
-readonly class ScaledObjectGeneratedEvent implements ManifestGeneratedEventInterface
+readonly class ScaledJobGeneratedEvent implements ManifestGeneratedEventInterface
 {
-    public const NAME = 'dealroadshow_k8s.manifest_generated.scaled_object';
+    public const NAME = 'dealroadshow_k8s.manifest_generated.scaled_job';
 
     public function __construct(
-        private ScaledObjectInterface $manifest,
-        private ScaledObject $apiResource,
-        private AppInterface $app,
+        private ScaledJobInterface $manifest,
+        private ScaledJob $apiResource,
+        private AppInterface $app
     ) {
     }
 
@@ -32,7 +32,7 @@ readonly class ScaledObjectGeneratedEvent implements ManifestGeneratedEventInter
         return $this->apiResource;
     }
 
-    public function scaledObject(): ScaledObject
+    public function scaledJob(): ScaledJob
     {
         return $this->apiResource;
     }
