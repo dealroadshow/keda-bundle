@@ -23,6 +23,9 @@
             "email": "petr.buchyn@finsight.com"
         }
     ],
+    "scripts": {
+        "cs": "./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix"
+    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }
