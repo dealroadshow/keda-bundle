@@ -7,8 +7,8 @@ namespace Dealroadshow\Bundle\KedaBundle\API\ScaledJob;
 class ScalingStrategy implements \JsonSerializable
 {
     private string $strategy = 'default';
-    private ?int $customScalingQueueLengthDeduction;
-    private ?string $customScalingRunningJobPercentage;
+    private ?int $customScalingQueueLengthDeduction = null;
+    private ?string $customScalingRunningJobPercentage = null;
 
     /**
      * @var string[]|null
