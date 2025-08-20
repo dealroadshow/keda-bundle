@@ -18,7 +18,7 @@ abstract class AbstractStandardMetricTrigger extends AbstractTriggerBuilder
 
     public function containerName(string $containerName): static
     {
-        return $this->set(self::CONTAINER_NAME, 'php');
+        return $this->set(self::CONTAINER_NAME, $containerName);
     }
 
     public static function withValue(int $value): static
